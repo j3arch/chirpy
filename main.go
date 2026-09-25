@@ -21,4 +21,10 @@ func main() {
 	log.Fatal(srv.ListenAndServe())
 }
 
-/// go build -o out && ./out
+func handlerReadiness() {
+
+}
+
+// go build -o out && ./out
+
+// go run .
