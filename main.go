@@ -14,6 +14,10 @@ func main() {
 	const filepathRoot = "."
 	const port = "8080"
 
+	apiCfg := apiConfig{
+		fileserverHits: atomic.Int32{}, // checkes how many times server was visited
+	}
+
 	mux := http.NewServeMux()
 	mux.Handle("/app/", http.StripPrefix("/app/", http.FileServer(http.Dir(filepathRoot))))
 	mux.HandleFunc("/healthz", handlerReadiness)
