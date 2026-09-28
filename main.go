@@ -31,6 +31,10 @@ func main() {
 	log.Fatal(srv.ListenAndServe())
 }
 
+func (cfg *apiConfig) handlerMetrics(w http.ResponseWriter, r *http.Request) {
+
+}
+
 func (cfg *apiConfig) middlewareMetricsInc(next http.Handler) http.Handler {
 
 }
