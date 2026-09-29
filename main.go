@@ -15,12 +15,12 @@ func main() {
 	const port = "8080"
 
 	apiCfg := apiConfig{
-		fileserverHits: atomic.Int32{}, // checkes how many times server was visited
+		fileserverHits: atomic.Int32{},
 	}
 
 	mux := http.NewServeMux()
 	fsHandler := apiCfg.middlewareMetricsInc(http.StripPrefix("/app/", http.FileServer(http.Dir(filepathRoot))))
-	mux.Handle("/app", fsHandler)
+	mux.Handle("/app/", fsHandler)
 
 	mux.HandleFunc("GET /healthz", handlerReadiness)
 	mux.HandleFunc("POST /reset", apiCfg.handlerReset)
