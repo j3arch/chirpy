@@ -28,4 +28,8 @@ func handlerChirpsValidate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	respondWithJSON(w, http.StatusOK, returnVals{
+		Valid: true,
+	})
+
 }
