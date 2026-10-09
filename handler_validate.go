@@ -5,5 +5,12 @@ import (
 )
 
 func handlerChirpsValidate(w http.ResponseWriter, r *http.Request) {
+	type parameters struct {
+		Body string `json:"body"`
+	}
+
+	type returnVals struct {
+		Valid bool `json:"valid"`
+	}
 
 }
