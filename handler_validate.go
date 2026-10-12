@@ -33,3 +33,7 @@ func handlerChirpsValidate(w http.ResponseWriter, r *http.Request) {
 	})
 
 }
+
+func getCleanedBody(body string, badWords map[string]struct{}) string {
+
+}
