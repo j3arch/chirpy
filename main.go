@@ -4,6 +4,8 @@ import (
 	"log"
 	"net/http"
 	"sync/atomic"
+
+	"github.com/joho/godotenv"
 )
 
 type apiConfig struct {
@@ -13,6 +15,8 @@ type apiConfig struct {
 func main() {
 	const filepathRoot = "."
 	const port = "8080"
+
+	godotenv.Load()
 
 	apiCfg := apiConfig{
 		fileserverHits: atomic.Int32{},
