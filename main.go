@@ -5,11 +5,14 @@ import (
 	"net/http"
 	"sync/atomic"
 
+	"github.com/j3arch/chirpy/internal/database"
 	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 )
 
 type apiConfig struct {
 	fileserverHits atomic.Int32
+	db             *database.Queries
 }
 
 func main() {
@@ -18,8 +21,11 @@ func main() {
 
 	godotenv.Load()
 
+	dbQueries := database.New()
+
 	apiCfg := apiConfig{
 		fileserverHits: atomic.Int32{},
+		db:             dbQueries,
 	}
 
 	mux := http.NewServeMux()
