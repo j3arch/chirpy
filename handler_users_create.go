@@ -30,4 +30,10 @@ func (cfg *apiConfig) handlerUsersCreate(w http.ResponseWriter, r *http.Request)
 		respondWithError(w, http.StatusInternalServerError, "Couldn't decode parameterers", err)
 		return
 	}
+
+	user, err := cfg.db.CreateUser(r.Context(), params.Email)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, "Couldn't create user", err)
+		return
+	}
 }
