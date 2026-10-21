@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/bootdotdev/learn-http-servers/internal/database"
 	"github.com/google/uuid"
+	"github.com/j3arch/chirpy/internal/database"
 )
 
 type Chirp struct {
