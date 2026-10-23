@@ -35,7 +35,7 @@ func main() {
 
 	dbConn, err := sql.Open("postgres", dbURL)
 	if err != nil {
-		log.Fatal("Error opening database: %s", err)
+		log.Fatalf("Error opening database: %s", err)
 	}
 
 	dbQueries := database.New(dbConn)
@@ -49,12 +49,12 @@ func main() {
 	mux := http.NewServeMux()
 	fsHandler := apiCfg.middlewareMetricsInc(http.StripPrefix("/app/", http.FileServer(http.Dir(filepathRoot))))
 	mux.Handle("/app/", fsHandler)
-
 	mux.HandleFunc("GET /api/healthz", handlerReadiness)
-	mux.HandleFunc("POST /api/validate_chirp", handlerChirpsValidate)
 	mux.HandleFunc("POST /api/users", apiCfg.handlerUsersCreate)
+	mux.HandleFunc("POST /api/chirps", apiCfg.handlerChirpsCreate)
 	mux.HandleFunc("POST /admin/reset", apiCfg.handlerReset)
 	mux.HandleFunc("GET /admin/metrics", apiCfg.handlerMetrics)
+	mux.HandleFunc("GET /api/chirps", apiCfg.handlerChirpsRetrieve)
 
 	srv := &http.Server{
 		Addr:    ":" + port,
