@@ -24,3 +24,7 @@ func (cfg *apiConfig) handlerChirpsRetrieve(w http.ResponseWriter, r *http.Reque
 
 	respondWithJSON(w, http.StatusOK, chirps)
 }
+
+func (cfg *apiConfig) handlerChripsGet(w http.ResponseWriter, r *http.Request) {
+
+}
