@@ -1,3 +1,9 @@
 package auth
 
-// tests for auth
+import (
+	"testing"
+)
+
+func TestCheckPasswordHash(t *testing.T) {
+
+}
