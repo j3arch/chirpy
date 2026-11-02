@@ -59,7 +59,7 @@ func ValidateJWT(tokenString, tokenSecret string) (uuid.UUID, error) {
 		return uuid.Nil, err
 	}
 
-	issuer, err := token.Claims.GetSubject()
+	issuer, err := token.Claims.GetIssuer()
 	if err != nil {
 		return uuid.Nil, err
 	}
@@ -72,6 +72,5 @@ func ValidateJWT(tokenString, tokenSecret string) (uuid.UUID, error) {
 	if err != nil {
 		return uuid.Nil, fmt.Errorf("invalid user ID: %w", err)
 	}
-
 	return id, nil
 }
