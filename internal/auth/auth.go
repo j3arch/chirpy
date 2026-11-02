@@ -1,6 +1,17 @@
 package auth
 
-import "github.com/alexedwards/argon2id"
+import (
+	"time"
+	"uuid"
+
+	"github.com/alexedwards/argon2id"
+)
+
+type TokenType string
+
+const (
+	TokenTypeAccess TokenType = "chirpy-access"
+)
 
 func HashPassword(password string) (string, error) {
 	hash, err := argon2id.CreateHash(password, argon2id.DefaultParams)
@@ -16,4 +27,8 @@ func CheckPasswordHash(password, hash string) (bool, error) {
 		return false, err
 	}
 	return match, nil
+}
+
+func MakeJWT(userID uuid.UUID, tokenSecret string, expiresIn time.Duration) (string, error) {
+
 }
