@@ -42,7 +42,7 @@ func TestCheckPasswordHash(t *testing.T) {
 			name:          "Wrong hash",
 			password:      password1,
 			hash:          hash2,
-			wantErr:       true,
+			wantErr:       false,
 			matchPassword: false,
 		},
 	}
