@@ -24,6 +24,27 @@ func TestCheckPasswordHash(t *testing.T) {
 			wantErr:       false,
 			matchPassword: true,
 		},
+		{
+			name:          "Incorrect password",
+			password:      "wrongPassword",
+			hash:          hash1,
+			wantErr:       false,
+			matchPassword: false,
+		},
+		{
+			name:          "Empty password",
+			password:      "",
+			hash:          hash1,
+			wantErr:       false,
+			matchPassword: false,
+		},
+		{
+			name:          "Wrong hash",
+			password:      password1,
+			hash:          hash2,
+			wantErr:       true,
+			matchPassword: false,
+		},
 	}
 
 	for _, tt := range tests {
