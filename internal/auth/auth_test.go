@@ -75,7 +75,25 @@ func TestValidateJWT(t *testing.T) {
 		wantErr     bool
 	}{
 		{
-			// case
+			name:        "Valid Token",
+			tokenString: validToken,
+			tokenSecret: "secret",
+			wantUserID:  userID,
+			wantErr:     false,
+		},
+		{
+			name:        "Invalid token",
+			tokenString: "Invalid.token.string",
+			tokenSecret: "secret",
+			wantUserID:  uuid.Nil,
+			wantErr:     true,
+		},
+		{
+			name:        "Wrong secret",
+			tokenString: validToken,
+			tokenSecret: "wrong_secret",
+			wantUserID:  uuid.Nil,
+			wantErr:     true,
 		},
 	}
 
