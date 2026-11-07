@@ -17,6 +17,8 @@ const (
 	TokenTypeAccess TokenType = "chirpy-access"
 )
 
+var ErrNoAuthHeaderIncluded = errors.New("no auth header included in request")
+
 func HashPassword(password string) (string, error) {
 	hash, err := argon2id.CreateHash(password, argon2id.DefaultParams)
 	if err != nil {
