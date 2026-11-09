@@ -41,7 +41,7 @@ func (cfg *apiConfig) handlerLogin(w http.ResponseWriter, r *http.Request) {
 
 	expirationTime := time.Hour
 	if params.ExpiresInSeconds > 0 && params.ExpiresInSeconds < 3600 {
-		expirationTime := time.Duration(params.ExpiresInSeconds) * time.Second
+		expirationTime = time.Duration(params.ExpiresInSeconds) * time.Second
 	}
 
 	accessToken, err := auth.MakeJWT(
