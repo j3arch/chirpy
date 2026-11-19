@@ -99,3 +99,7 @@ func MakeRefreshToken() string {
 	rand.Read(token)
 	return hex.EncodeToString(token)
 }
+
+func getAPIKey(headers http.Header) (string, error) {
+	return "", nil
+}
